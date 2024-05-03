@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   PER_PAGE = 10
 
   validates :title, presence: true
+  validate :task_space, on: :create
 
   scope :ordered, ->(page = 1) { order(created_at: :desc).page(page).per(PER_PAGE) }
 
@@ -17,5 +18,21 @@ class Task < ApplicationRecord
     event :complete do
       transition in_progress: :done
     end
+  end
+
+  private
+
+  def task_space
+    return if enough_space?
+
+    errors.add(:status, 'ToDo has larger amount of tasks')
+  end
+
+  def enough_space?
+    todo_count = Task.with_status(:to_do).count
+    total_count = Task.count
+    todo_percentage = total_count > 0 ? (todo_count.to_f / total_count) * 100 : 0
+
+    todo_percentage < 50
   end
 end
