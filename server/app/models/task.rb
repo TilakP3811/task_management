@@ -29,6 +29,8 @@ class Task < ApplicationRecord
   end
 
   def enough_space?
+    return true unless to_do?
+    
     todo_count = Task.with_status(:to_do).count
     total_count = Task.count
     todo_percentage = total_count > 0 ? (todo_count.to_f / total_count) * 100 : 0
