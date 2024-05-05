@@ -83,19 +83,19 @@ export default function CreateTask({ setTasks, setTotalPages }) {
           </label>
           <button
             onClick={() => setStatus(0)}
-            className={`inline-flex mr-3 items-center justify-center px-3 py-2 text-sm font-semibold shadow-sm transition-all duration-150 hover:bg-blue-600 hover:text-white active:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 tracking-wider cursor-pointer ${status === 0 ? "bg-blue-500 text-white" : "bg-white text-blue-600 border border-blue-600"}`}
+            className={`inline-flex mr-3 items-center justify-center px-3 py-2 text-sm font-semibold shadow-sm transition-all duration-150 hover:bg-red-600 hover:text-white active:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 tracking-wider cursor-pointer ${status === 0 ? "bg-red-500 text-white" : "bg-white text-red-600 border border-red-600"}`}
           >
             To Do
           </button>
           <button
             onClick={() => setStatus(1)}
-            className={`inline-flex mr-3 items-center justify-center px-3 py-2 text-sm font-semibold shadow-sm transition-all duration-150 hover:bg-blue-600 hover:text-white active:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 tracking-wider cursor-pointer ${status === 1 ? "bg-blue-500 text-white" : "bg-white text-blue-600 border border-blue-600"}`}
+            className={`inline-flex mr-3 items-center justify-center px-3 py-2 text-sm font-semibold shadow-sm transition-all duration-150 hover:bg-yellow-600 hover:text-white active:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600 tracking-wider cursor-pointer ${status === 1 ? "bg-yellow-500 text-white" : "bg-white text-yellow-600 border border-yellow-600"}`}
           >
             In Progress
           </button>
           <button
             onClick={() => setStatus(2)}
-            className={`inline-flex mr-3 items-center justify-center px-3 py-2 text-sm font-semibold shadow-sm transition-all duration-150 hover:bg-blue-600 hover:text-white active:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 tracking-wider cursor-pointer ${status === 2 ? "bg-blue-500 text-white" : "bg-white text-blue-600 border border-blue-600"}`}
+            className={`inline-flex mr-3 items-center justify-center px-3 py-2 text-sm font-semibold shadow-sm transition-all duration-150 hover:bg-green-600 hover:text-white active:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 tracking-wider cursor-pointer ${status === 2 ? "bg-green-500 text-white" : "bg-white text-green-600 border border-green-600"}`}
           >
             Done
           </button>

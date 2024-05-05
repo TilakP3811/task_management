@@ -4,9 +4,12 @@ module Api
       before_action :set_task, only: %i[update destroy]
 
       def index
+        status = params[:status].present? ? params[:status] : [0, 1, 2]
+        filtered_tasks = Task.filtered(status)
+
         render json: {
-          tasks: Task.ordered(params[:page]),
-          total_pages: number_of_pages(Task.count)
+          tasks: filtered_tasks.ordered(params[:page]),
+          total_pages: number_of_pages(filtered_tasks.count)
         }, status: :ok
       end
 

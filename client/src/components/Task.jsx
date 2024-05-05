@@ -2,15 +2,28 @@ import Paper from "./Paper.jsx";
 import { useState } from "react";
 import menu from "../assets/menu.svg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Task({ task, setTasks, setTotalPages }) {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const chainMap = {
     0: { status: 1, status_name: "in progress" },
     1: { status: 2, status_name: "done" },
     2: { status: 0, status_name: "to do" },
   };
+
+  function borderColor(status) {
+    switch (status) {
+      case 0:
+        return "border-l-4 border-l-red-400";
+      case 1:
+        return "border-l-4 border-l-yellow-400";
+      case 2:
+        return "border-l-4 border-l-green-400";
+    }
+  }
 
   function chainNumbers(number) {
     return chainMap[number] !== undefined ? chainMap[number] : null;
@@ -53,7 +66,7 @@ export default function Task({ task, setTasks, setTotalPages }) {
   }
 
   return (
-    <Paper label={true} labelColor="border-l-4 border-l-sky-700">
+    <Paper label={true} labelColor={borderColor(task.status)}>
       <div className="flex justify-between items-center">
         <p className="max-w-72 md:max-w-screen-lg text-base font-semibold text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">
           {task.title}

@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   validate :task_space, on: :create
 
   scope :ordered, ->(page = 1) { order(created_at: :desc).page(page).per(PER_PAGE) }
+  scope :filtered, ->(status = [0, 1, 2]) { where(status: status) }
 
   state_machine :status, initial: :to_do do
     state :to_do, value: 0
@@ -30,7 +31,7 @@ class Task < ApplicationRecord
 
   def enough_space?
     return true unless to_do?
-    
+
     todo_count = Task.with_status(:to_do).count
     total_count = Task.count
     todo_percentage = total_count > 0 ? (todo_count.to_f / total_count) * 100 : 0
