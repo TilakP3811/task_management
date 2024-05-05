@@ -1,6 +1,7 @@
 import Modal from "./Modal.jsx";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function CreateTask({ setTasks, setTotalPages }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -27,11 +28,12 @@ export default function CreateTask({ setTasks, setTotalPages }) {
       const res = await axios.post("http://localhost:3000/api/v1/tasks", {
         task,
       });
+      toast.success("Task created successfully");
 
       setTasks(res.data.tasks);
       setTotalPages(res.data.total_pages);
     } catch (e) {
-      console.log(e);
+      toast.error(e.response.data.error[0]);
     } finally {
       closeModal();
       setTitle("");

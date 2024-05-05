@@ -3,6 +3,7 @@ import { useState } from "react";
 import menu from "../assets/menu.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Task({ task, setTasks, setTotalPages }) {
   const [open, setOpen] = useState(false);
@@ -40,9 +41,11 @@ export default function Task({ task, setTasks, setTotalPages }) {
         task,
       );
 
+      toast.success("Task updated");
+
       setTasks(res.data);
     } catch (e) {
-      console.log(e);
+      toast.error(e.response.data.error[0]);
     } finally {
       setOpen((value) => {
         return !value;
@@ -55,13 +58,13 @@ export default function Task({ task, setTasks, setTotalPages }) {
       const res = await axios.delete(
         `http://localhost:3000/api/v1/tasks/${id}`,
       );
-
+      toast.success("Task deleted");
       setTasks(res.data.tasks);
       if (res.data.total_pages > 0) {
         setTotalPages(res.data.total_pages);
       }
     } catch (e) {
-      console.log(e);
+      toast.error(e.response.data.error[0]);
     }
   }
 
