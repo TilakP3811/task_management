@@ -4,15 +4,25 @@ import menu from "../assets/menu.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import ShowTask from "./ShowTask.jsx";
 
 export default function Task({ task, setTasks, setTotalPages }) {
   const [open, setOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const chainMap = {
     0: { status: 1, status_name: "in progress" },
     1: { status: 2, status_name: "done" },
     2: { status: 0, status_name: "to do" },
+  };
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   function borderColor(status) {
@@ -71,7 +81,10 @@ export default function Task({ task, setTasks, setTotalPages }) {
   return (
     <Paper label={true} labelColor={borderColor(task.status)}>
       <div className="flex justify-between items-center">
-        <p className="max-w-72 md:max-w-screen-lg text-base font-semibold text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">
+        <p
+          onClick={openModal}
+          className="max-w-72 md:max-w-screen-lg text-base font-semibold text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer"
+        >
           {task.title}
         </p>
         <div className="relative">
@@ -120,6 +133,7 @@ export default function Task({ task, setTasks, setTotalPages }) {
           )}
         </div>
       </div>
+      <ShowTask task={task} isModalOpen={isModalOpen} closeModal={closeModal} />
     </Paper>
   );
 }
