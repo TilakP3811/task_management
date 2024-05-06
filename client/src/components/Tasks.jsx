@@ -43,7 +43,7 @@ export default function Tasks({
 
   async function fetchTasks() {
     const res = await axios.get(
-      `http://localhost:3000/api/v1/tasks?page=${currentPage}&status=${statusFilter}`,
+      `http://34.228.15.226:3000/api/v1/tasks?page=${currentPage}&status=${statusFilter}`,
     );
 
     if (res.data.total_pages > 0) {

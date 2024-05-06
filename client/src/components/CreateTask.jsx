@@ -25,7 +25,7 @@ export default function CreateTask({ setTasks, setTotalPages }) {
         status: status,
       };
 
-      const res = await axios.post("http://localhost:3000/api/v1/tasks", {
+      const res = await axios.post("http://34.228.15.226:3000/api/v1/tasks", {
         task,
       });
       toast.success("Task created successfully");

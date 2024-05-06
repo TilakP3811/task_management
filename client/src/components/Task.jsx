@@ -47,7 +47,7 @@ export default function Task({ task, setTasks, setTotalPages }) {
       };
 
       const res = await axios.patch(
-        `http://localhost:3000/api/v1/tasks/${id}`,
+        `http://34.228.15.226:3000/api/v1/tasks/${id}`,
         task,
       );
 
@@ -66,7 +66,7 @@ export default function Task({ task, setTasks, setTotalPages }) {
   async function handleDestroy(id) {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/api/v1/tasks/${id}`,
+        `http://34.228.15.226:3000/api/v1/tasks/${id}`,
       );
       toast.success("Task deleted");
       setTasks(res.data.tasks);
